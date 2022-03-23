@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: SecurityService
+
+server:
+  address: 0.0.0.0
+  port: 8090
+  error:
+    include-exception: true
+    include-message: always

@@ -62,7 +62,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <groupId>org.springframework.boot</groupId>
                 <configuration>
-                    <mainClass>com.github.klefstad_teaching.cs122b.activity.two.SecurityService</mainClass>
+                    <mainClass>com.github.klefstad_teaching.cs122b.security.SecurityService</mainClass>
                 </configuration>
             </plugin>
         </plugins>

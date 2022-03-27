@@ -1,4 +1,4 @@
-package com.github.klefstad_teaching.cs122b.activity.two.rest;
+package com.github.klefstad_teaching.cs122b.security.rest;
 
 import com.github.klefstad_teaching.cs122b.core.security.JWTManager;
 import com.nimbusds.jose.JOSEException;

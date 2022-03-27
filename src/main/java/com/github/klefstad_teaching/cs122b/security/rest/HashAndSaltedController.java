@@ -1,4 +1,4 @@
-package com.github.klefstad_teaching.cs122b.activity.two.rest;
+package com.github.klefstad_teaching.cs122b.security.rest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

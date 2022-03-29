@@ -3,6 +3,7 @@ package com.github.klefstad_teaching.cs122b.security.rest;
 import com.github.klefstad_teaching.cs122b.core.security.JWTManager;
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.JWSHeader;
+import com.nimbusds.jose.proc.BadJOSEException;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 import org.slf4j.Logger;
@@ -90,7 +91,12 @@ public class JWTController
 
         try {
             signedJWT.verify(manager.getVerifier());
-        } catch (IllegalStateException | JOSEException e) {
+            manager.getJwtProcessor().process(signedJWT, null);
+
+            // Do logic to check if expired manually
+            signedJWT.getJWTClaimsSet().getExpirationTime();
+
+        } catch (IllegalStateException | JOSEException | BadJOSEException e) {
             LOG.error("This is not a real token, DO NOT TRUST");
             e.printStackTrace();
             // If the verify function throws an error that we know the

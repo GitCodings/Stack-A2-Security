@@ -50,3 +50,63 @@ String base64EncodedHashedSalt = Base64.getEncoder().encodeToString(salt);
 To verify a user, repeat the steps above with the users **Stored Salt** and their **Given Password**. If the resulting **Hashed Password** equals the stored **Hashed Password** then they have given a valid password. If not then their password is not correct and return the appropriate response.
 
 ## JSON Web Tokens
+
+A JSON Web Token is created by first creating a `JWTClaimsSet` and `JWSHeader` combinding them into `SignedJWT`, and then `signing` the resulting `SignedJWT`
+
+### Creating a JWTClaimsSet
+
+A claim set is the claims we want to declare about the given user. For this project we want to make claims about the users: email, id, roles, as well as set the issueTime and expirationTime.
+
+```java
+JWTClaimsSet claimsSet =
+    new JWTClaimsSet.Builder()
+        .subject(email)
+        .expirationTime(expireTime)
+        .claim(JWTManager.CLAIM_ID, userId)    // we set claims like values in a map
+        .claim(JWTManager.CLAIM_ROLES, roles)
+        .issueTime(Date.from(Instant.now()))
+        .build();
+```
+
+
+### Creating a JWSHeader
+
+When we create out header we will be using the constants found in the provided `JWTManager` class as well as attaching our `EcKey`'s id to it.
+
+```java
+JWSHeader header =
+    new JWSHeader.Builder(JWTManager.JWS_ALGORITHM)
+        .keyID(manager.getEcKey().getKeyID())
+        .type(JWTManager.JWS_TYPE)
+        .build();
+```
+
+### Creating a SignedJWT and signing it
+
+Once we have our `JWSHeader` and `JWTClaimsSet` we can create a `SignedJWT` and sign it using the provided `JWTManager`.
+
+```java
+SignedJWT signedJWT = new SignedJWT(header, claimsSet);
+signedJWT.sign(manager.getSigner());
+```
+
+### Verifying a SignedJWT
+
+We can verify if a `SignedJWT` was created by us and that it has not been modified by using the provided `JWTManager`. 
+
+```java
+ try {
+    signedJWT.verify(manager.getVerifier());
+    manager.getJwtProcessor().process(signedJWT, null);
+
+    // Do logic to check if expired manually
+    signedJWT.getJWTClaimsSet().getExpirationTime();
+
+} catch (IllegalStateException | JOSEException | BadJOSEException e) {
+    LOG.error("This is not a real token, DO NOT TRUST");
+    e.printStackTrace();
+    // If the verify function throws an error that we know the
+    // token can not be trusted and the request should not be continued
+}
+```
+

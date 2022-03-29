@@ -25,7 +25,7 @@ public byte[] generateSalt()
 
 ### Hashing a users Password
 
-We use Java's `SecretKeyFactory` to help with hashing. We first create an instance by giving it our `HASH_FUNCTION`. WE then specify our `PBEKeySpec` by passing in our: `password`, `salt`, `ITERATIONS`, and `KEY_BIT_LENGTH`. We then pass this into the `SecretKeyFactory::generateSecret(PBEKeySpec keySpec)` fucntion giving us a a `SecretKey` instance. This contains our salt+hashed password that is safe to store in our database. Use the `SecretKey::getEncoded()` function to get our byte array and encode it, as well as our salt, into a base64 String using Java's `Base64`.
+We use Java's `SecretKeyFactory` to help with hashing. We first create an instance by giving it our `HASH_FUNCTION`. WE then specify our `PBEKeySpec` by passing in our: `password`, `salt`, `ITERATIONS`, and `KEY_BIT_LENGTH`. We then pass this into the `SecretKeyFactory::generateSecret(PBEKeySpec keySpec)` function giving us a a `SecretKey` instance. This contains our salt+hashed password that is safe to store in our database. Use the `SecretKey::getEncoded()` function to get our byte array and encode it, as well as our salt, into a base64 String using Java's `Base64`.
 
 **Note:** The `HASH_FUNCTION`, `ITERATIONS`, and `KEY_BIT_LENGTH` are constant values provided to you.
 
@@ -51,7 +51,7 @@ To verify a user, repeat the steps above with the users **Stored Salt** and thei
 
 ## JSON Web Tokens
 
-A JSON Web Token is created by first creating a `JWTClaimsSet` and `JWSHeader` combinding them into `SignedJWT`, and then `signing` the resulting `SignedJWT`
+A JSON Web Token is created by first creating a `JWTClaimsSet` and `JWSHeader` combining them into `SignedJWT`, and then `signing` the resulting `SignedJWT`
 
 ### Creating a JWTClaimsSet
 

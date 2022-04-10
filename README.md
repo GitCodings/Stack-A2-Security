@@ -2,6 +2,7 @@
 
 - [Salt and Hashing](#salt-and-hashing)
 - [JSON Web Tokens](#json-web-tokens)
+- [Instant and Duration](#instant-and-duration)
 
 
 ## Salt and Hashing
@@ -95,7 +96,7 @@ signedJWT.sign(manager.getSigner());
 We can verify if a `SignedJWT` was created by us and that it has not been modified by using the provided `JWTManager`. 
 
 ```java
- try {
+try {
     signedJWT.verify(manager.getVerifier());
     manager.getJwtProcessor().process(signedJWT, null);
 
@@ -108,5 +109,43 @@ We can verify if a `SignedJWT` was created by us and that it has not been modifi
     // If the verify function throws an error that we know the
     // token can not be trusted and the request should not be continued
 }
+```
+
+## Instant and Duration
+
+### Instant
+
+In Java the best way to deal with time is using the `Instant` class. This class has some convient functions for creating the current time, comparing times, and adding times.
+
+Getting a new instant of the current time:
+```java
+Instant currentTime = Instant.now;
+```
+
+Comparing two times:
+```java
+Instant expireTime = getExpireTime();
+
+if (Instant.now().isAfter(expireTime)) {
+    // The current time is AFTER the expire time
+} 
+```
+
+
+### Duration
+
+In Java we use the `Duration` class to keep a specific "Time Duration".
+
+You can create a `Duration` by using the static builders in `Duration`
+```java
+Duration expire = Duration.ofHours(2); // Much more readable then using EPOCH
+```
+
+Adding a Duration to Instant
+```java
+Instant currentTime = Instant.now();
+Duration expireDuration = Duration.ofHours(2);
+
+Instant expireTime = currentTime.plus(expireDuration);
 ```
 

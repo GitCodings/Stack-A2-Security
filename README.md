@@ -96,6 +96,9 @@ We can verify if a `SignedJWT` was created by us and that it has not been modifi
 
 ```java
  try {
+    // Rebuild the SignedJWT from the serialized String
+    SignedJWT signedJWT = SignedJWT.parse(serialized);
+    
     signedJWT.verify(manager.getVerifier());
     manager.getJwtProcessor().process(signedJWT, null);
 

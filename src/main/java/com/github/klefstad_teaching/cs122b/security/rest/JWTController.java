@@ -90,11 +90,13 @@ public class JWTController
         // we were the ones that issued and signed it by using our verifier
 
         try {
-            signedJWT.verify(manager.getVerifier());
-            manager.getJwtProcessor().process(signedJWT, null);
+            SignedJWT rebuiltSignedJwt = SignedJWT.parse(serialized);
+
+            rebuiltSignedJwt.verify(manager.getVerifier());
+            manager.getJwtProcessor().process(rebuiltSignedJwt, null);
 
             // Do logic to check if expired manually
-            signedJWT.getJWTClaimsSet().getExpirationTime();
+            rebuiltSignedJwt.getJWTClaimsSet().getExpirationTime();
 
         } catch (IllegalStateException | JOSEException | BadJOSEException e) {
             LOG.error("This is not a real token, DO NOT TRUST");

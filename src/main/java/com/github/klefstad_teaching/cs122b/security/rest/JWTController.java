@@ -98,7 +98,7 @@ public class JWTController
             // Do logic to check if expired manually
             rebuiltSignedJwt.getJWTClaimsSet().getExpirationTime();
 
-        } catch (IllegalStateException | JOSEException | BadJOSEException e) {
+        } catch (IllegalStateException | JOSEException | BadJOSEException | ParseException e) {
             LOG.error("This is not a real token, DO NOT TRUST");
             e.printStackTrace();
             // If the verify function throws an error that we know the

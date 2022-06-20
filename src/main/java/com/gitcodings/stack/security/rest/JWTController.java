@@ -1,6 +1,6 @@
-package com.github.klefstad_teaching.cs122b.security.rest;
+package com.gitcodings.stack.security.rest;
 
-import com.github.klefstad_teaching.cs122b.core.security.JWTManager;
+import com.gitcodings.stack.core.security.JWTManager;
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.JWSHeader;
 import com.nimbusds.jose.proc.BadJOSEException;

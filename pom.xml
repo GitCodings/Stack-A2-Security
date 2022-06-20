@@ -4,7 +4,6 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-
     <repositories>
         <repository>
             <id>jitpack.io</id>
@@ -13,19 +12,19 @@
     </repositories>
 
     <parent>
-        <groupId>com.github.klefstad-teaching</groupId>
-        <artifactId>CS122B-Parent</artifactId>
-        <version>1.0.2</version>
+        <groupId>com.gitcodings.stack</groupId>
+        <artifactId>stack-parent</artifactId>
+        <version>1.2.0</version>
     </parent>
 
-    <artifactId>cs122b-a2-security</artifactId>
-    <name>CS122B Activity 2: Security</name>
+    <artifactId>stack-a2-security</artifactId>
+    <name>Stack Activity 2: Security</name>
 
     <dependencies>
         <dependency>
-            <groupId>com.github.klefstad-teaching</groupId>
-            <artifactId>CS122B-Core</artifactId>
-            <version>1.0.2</version>
+            <groupId>com.gitcodings.stack</groupId>
+            <artifactId>stack-core</artifactId>
+            <version>1.2.0</version>
         </dependency>
 
         <dependency>
@@ -66,7 +65,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <groupId>org.springframework.boot</groupId>
                 <configuration>
-                    <mainClass>com.github.klefstad_teaching.cs122b.security.SecurityService</mainClass>
+                    <mainClass>com.gitcodings.stack.security.SecurityService</mainClass>
                 </configuration>
             </plugin>
         </plugins>

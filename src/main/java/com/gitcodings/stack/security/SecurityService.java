@@ -1,4 +1,4 @@
-package com.github.klefstad_teaching.cs122b.security;
+package com.gitcodings.stack.security;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

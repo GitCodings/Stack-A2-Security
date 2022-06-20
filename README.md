@@ -1,4 +1,4 @@
-# CS122B Activity 2 - Security
+# Stack Activity 2 - Security
 
 - [Salt and Hashing](#salt-and-hashing)
 - [JSON Web Tokens](#json-web-tokens)
